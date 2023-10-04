@@ -3,10 +3,15 @@ This repository contains the code and input data associated with the paper title
 ### Guide to the code
 
 This README file is divided into the following sections:
+
 •	General comments
+
 •	Auxillary functions
+
 •	Run Auction functions
+
 •	Diagonalization method
+
 •	Plottings
 
 ### Important general comments
@@ -17,9 +22,13 @@ The code is divided into two main parts: the learning part and the diagonalizati
 ### Auxillary functions
 
 The auc_function file contains the following classes:
+
 •	A parent Bidder class is defined where we defined the common definitions for both Random and GPMW bidders.
+
 •	random_bidder class: Represents a bidder with random bidding behavior.
-•	GPMW_bidder class: Implements a bidding strategy using Gaussian Process Multiplicative Weight update algorithm. Importantly, this class contains some functions important for GP such as how it updates during the auction rounds using gpr.fit and gpr.predict for Gaussian process regression and Gaussian process prediction.
+
+•	GPMW_bidder class: Implements a bidding strategy using Gaussian Process Multiplicative Weight update algorithm. Importantly, this class contains some functions important for GP such as how it updates 
+during the auction rounds using gpr.fit and gpr.predict for Gaussian process regression and Gaussian process prediction.
 
 ### Run Auction functions
 
