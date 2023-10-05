@@ -25,7 +25,7 @@ def normalize_util(payoffs, min_payoff, max_payoff):
 
 normalize = np.vectorize(normalize_util)
 
-# parent class of bidders
+# parent class of all bidders (Random and GPMW)
 
 class Bidder:
     def __init__(self, c_list, d_list, K, c_limit=None, d_limit=None, has_seed=False):
@@ -76,13 +76,14 @@ class Bidder:
             choice = np.random.choice(len(self.action_set), p=mixed_strategies)
         return self.action_set[choice], choice
         
+# Bidder using Random- algorithm 
 
 class random_bidder(Bidder):
     def __init__(self, c_list, d_list, K, c_limit=None, d_limit=None, has_seed=False):
         super().__init__(c_list, d_list, K, c_limit=c_limit, d_limit=d_limit, has_seed=has_seed)
         self.type = 'random'
 
-# Player using GP_Predict Algorithm proposed
+# Bidder using GPMW Algorithm
 
 class GPMW_bidder(Hedge_bidder):
     def __init__(self, c_list, d_list, K, max_payoff, T, beta, c_limit=None, d_limit=None, has_seed=False):
