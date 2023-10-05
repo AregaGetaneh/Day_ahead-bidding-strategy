@@ -1,4 +1,6 @@
-This repository contains the code and input data associated with the paper titled 'Learning to Bid in Forward Electricity Markets with Minimal Information' authored by Arega Getaneh Abate, Dorsa Majdi, Jalal Kazempour, and Maryam Kamgampour.
+This repository contains the code and input data associated with the paper titled 
+# Learning to Bid in Forward Electricity Markets with Minimal Information 
+authored by Arega Getaneh Abate, Dorsa Majdi, Jalal Kazempour, and Maryam Kamgampour.
 
 ### Guide to the code
 
