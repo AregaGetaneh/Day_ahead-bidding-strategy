@@ -75,6 +75,12 @@ class Bidder:
         else:
             choice = np.random.choice(len(self.action_set), p=mixed_strategies)
         return self.action_set[choice], choice
+        
+
+class random_bidder(Bidder):
+    def __init__(self, c_list, d_list, K, c_limit=None, d_limit=None, has_seed=False):
+        super().__init__(c_list, d_list, K, c_limit=c_limit, d_limit=d_limit, has_seed=has_seed)
+        self.type = 'random'
 
 # Player using GP_Predict Algorithm proposed
 
