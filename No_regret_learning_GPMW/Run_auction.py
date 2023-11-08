@@ -96,7 +96,7 @@ def run_auction(T, bidders, Q, cap, regret_calc):
             # update weights
             for i, bidder in enumerate(bidders):
                 if bidder.type == 'GPMW':
-                    bidder.update_weights(x[i], marginal_price, Q)
+                    bidder.update_weights(x[i], marginal_price)
             game_data.regrets.append(regrets)
 
         # store data
@@ -300,7 +300,7 @@ def sim_GP_BR(num_runs, T, file_name):
                 bidder.cum_each_action[j] += payoff_action
             bidder.history_payoff_profile.append(np.array(payoffs_each_action))
             regret = (max(bidder.cum_each_action) - sum(bidder.history_payoff))/(t+1)
-            bidder.update_weights(x[i], marginal_price, Q)
+            bidder.update_weights(x[i], marginal_price)
             # 1d regret put in a list to be compatible with the rest of the code
             game_data.regrets.append([regret])
 
