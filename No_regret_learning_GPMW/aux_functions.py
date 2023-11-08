@@ -100,14 +100,14 @@ class GPMW_bidder(Hedge_bidder):
         self.input_history = []
         super().restart()
 
-    def update_weights(self, alloc_bidder, marginal_price, Q):
-        self.input_history.append([alloc_bidder, marginal_price, Q, self.played_action[0], self.played_action[1]])
+    def update_weights(self, alloc_bidder, marginal_price):
+        self.input_history.append([alloc_bidder, marginal_price, self.played_action[0], self.played_action[1]])
         self.gpr.fit(np.array(self.input_history), np.array(self.history_payoff))
 
         # all the input profiles that their payoffs need to be predicted
         input_predict = []
         for i in range(self.K):
-            input_predict.append([alloc_bidder, marginal_price, Q, self.action_set[i][0], self.action_set[i][1]])
+            input_predict.append([alloc_bidder, marginal_price, self.action_set[i][0], self.action_set[i][1]])
         mean, std = self.gpr.predict(input_predict, return_std=True)
         payoffs = mean + self.beta * std
         super().update_weights(payoffs)
