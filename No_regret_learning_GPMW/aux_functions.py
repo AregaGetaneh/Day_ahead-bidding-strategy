@@ -1,5 +1,3 @@
-# ## Important libraries
-
 import numpy as np
 import cvxpy as cp
 from sklearn.gaussian_process import GaussianProcessRegressor
@@ -9,7 +7,6 @@ from sklearn.metrics import r2_score
 from tqdm import tqdm
 import pickle
 import re
-
 
 # function to normalize payoffs in [0,1]
 
@@ -25,7 +22,8 @@ def normalize_util(payoffs, min_payoff, max_payoff):
 
 normalize = np.vectorize(normalize_util)
 
-# parent class of all bidders (Random and GPMW)
+
+# parent class of bidders
 
 class Bidder:
     def __init__(self, c_list, d_list, K, c_limit=None, d_limit=None, has_seed=False):
@@ -75,40 +73,27 @@ class Bidder:
         else:
             choice = np.random.choice(len(self.action_set), p=mixed_strategies)
         return self.action_set[choice], choice
+    
+    
+    # Player using Hedge algorithm (Freund and Schapire. 1997)
+
+class Hedge_bidder(Bidder):
+    def __init__(self, c_list, d_list, K, max_payoff, T, c_limit=None, d_limit=None, has_seed=False):
+        super().__init__(c_list, d_list, K, c_limit=c_limit, d_limit=d_limit, has_seed=has_seed)
+        self.type = 'Hedge'
+        self.T = T
+        self.learning_rate = np.sqrt(8 * np.log(self.K) / self.T)
+        self.max_payoff = max_payoff
+
+    def update_weights(self, payoffs):
+        payoffs = normalize(payoffs, 0, self.max_payoff)
+        losses = np.ones(self.K) - np.array(payoffs)
+        self.weights = np.multiply(self.weights, np.exp(np.multiply(self.learning_rate, -losses)))
+        self.weights = self.weights / np.sum(self.weights)
         
-# Bidder using Random- algorithm 
+        # Player choosing actions uniformly random each time
 
 class random_bidder(Bidder):
     def __init__(self, c_list, d_list, K, c_limit=None, d_limit=None, has_seed=False):
         super().__init__(c_list, d_list, K, c_limit=c_limit, d_limit=d_limit, has_seed=has_seed)
         self.type = 'random'
-
-# Bidder using GPMW Algorithm
-
-class GPMW_bidder(Hedge_bidder):
-    def __init__(self, c_list, d_list, K, max_payoff, T, beta, c_limit=None, d_limit=None, has_seed=False):
-        super().__init__(c_list, d_list, K, max_payoff, T, c_limit=c_limit, d_limit=d_limit, has_seed=has_seed)
-        self.type = 'GPMW'
-        self.sigma = 0.01
-        self.gpr = GaussianProcessRegressor(kernel=RBF(), alpha=self.sigma ** 2)
-        self.gpr.optimizer = None
-        self.input_history = []
-        self.beta = beta
-        self.max_payoff = max_payoff
-
-    def restart(self):
-        self.input_history = []
-        super().restart()
-
-    def update_weights(self, alloc_bidder, marginal_price):
-        self.input_history.append([alloc_bidder, marginal_price, self.played_action[0], self.played_action[1]])
-        self.gpr.fit(np.array(self.input_history), np.array(self.history_payoff))
-
-        # all the input profiles that their payoffs need to be predicted
-        input_predict = []
-        for i in range(self.K):
-            input_predict.append([alloc_bidder, marginal_price, self.action_set[i][0], self.action_set[i][1]])
-        mean, std = self.gpr.predict(input_predict, return_std=True)
-        payoffs = mean + self.beta * std
-        super().update_weights(payoffs)
-
