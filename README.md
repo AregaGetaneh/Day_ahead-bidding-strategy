@@ -25,17 +25,16 @@ The code is divided into two main parts: the learning part and the diagonalizati
 
 The auc_function file contains the following classes:
 
-•	A parent Bidder class is defined where we defined the common definitions for both Random and GPMW bidders.
+•	A parent Bidder class is defined where we defined the common definitions for both Random and Hedge bidders.
 
 •	random_bidder class: Represents a bidder with random bidding behavior.
 
-•	GPMW_bidder class: Implements a bidding strategy using Gaussian Process Multiplicative Weight update algorithm. Importantly, this class contains some functions important for GP such as how it updates 
-during the auction rounds using gpr.fit and gpr.predict for Gaussian process regression and Gaussian process prediction.
+•	Hedge_bidder class: Implements a bidding strategy using a Multiplicative Weight update algorithm. 
 
 ### Run Auction functions
 
-The 'Run_auction' file contains crucial functions for the auction environment, including the embedded optimization function. Within this file, the 'run_auction' function calculates the payoff and regret of the learning bidder. It also stores essential data such as bids (c and d values), allocations, marginal prices, and social welfare (the Market Operator's objective function) for post analysis.
-Additionally, the file includes three essential functions: 'simulate' for the GP-Random case, where Bidder 5 uses GPMW and Bidders 1-4 use the Random algorithm, 'simulate_all_same' for the case where all bidders use GPMW, and finally, 'sim_GP_BR' for the case where Bidder 5 uses GPMW while Bidders 1-4 employ their best responses obtained from the diagonalization algorithm.
+The 'Run_auction' file contains crucial functions for the auction environment, including the embedded optimization function. Within this file, the 'run_auction' function calculates the payoff and regret of the learning bidder. It also stores essential data such as bids (c and d values), allocations, marginal prices, and social welfare (the Market Operator's objective function) for post-analysis.
+Additionally, the file includes three essential functions: 'simulate' for the Hedge-Random case, where Bidder 5 uses the Hedge algorithm and Bidders 1-4 use the Random algorithm, 'simulate_all_same' for the case where all bidders use the HEDGE, and finally, 'sim_HG_BR' for the case where Bidder 5 uses the HEDGE algorithm while Bidders 1-4 employ their best responses obtained from the diagonalization algorithm.
 
 ### Diagonalization method
 
@@ -43,8 +42,8 @@ This file contains the code for the benchmark model. First, it defines the Mixed
 
 ### Plottings
 
-The 'Plotting' file contains several plotting functions. These functions are designed to plot regret (for Bidder 5), social cost, and market clearing prices (for the system), as well as bid prices and payoffs (for Bidders 1 and 5). All of these plotting functions take into account three learning cases: all bidders using GPMW, Bidder 5 using GPMW while Bidders 1-4 use Random, and Bidder 5 using GPMW while Bidders 1-4 use their best responses from the diagonalization algorithm. Furthermore, the functions contain two optimization cases: diagonalization and trustful biddings.
-The code runs only for Bidder 1 in the case where we need to plot for Bidder 5 as well. This is the case for bid prices and payoffs functions.  Hence, it is possible to plot for Bidder 5 by uncommenting the necessary lines in each function where there are comments indicating this.
+The 'Plotting' file contains several plotting functions. These functions are designed to plot regret (for Bidder 5), social cost, and market clearing prices (for the system), as well as bid prices and payoffs (for Bidders 1 and 5). All of these plotting functions take into account three learning cases: all bidders using the Degde, Bidder 5 usingthe Hedge while Bidders 1-4 use Random, and Bidder 5 using Hedge while Bidders 1-4 use their best responses from the diagonalization algorithm. Furthermore, the functions contain two optimization cases: diagonalization and trustful biddings.
+The code runs only for Bidder 1 for bid prices (c and d values) and payoff functions.  However, it is possible to plot for Bidder 5 by uncommenting the necessary lines in each function where there are comments indicating this.
 
 ### Summary
 
