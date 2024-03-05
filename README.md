@@ -1,6 +1,6 @@
 This repository contains the code and input data associated with the paper titled 
-### Learning to Bid in Forward Electricity Markets with Minimal Information 
-authored by Arega Getaneh Abate, Dorsa Majdi, Jalal Kazempour, and Maryam Kamgampour.
+### Learning  to Bid in Forward Electricity Markets Using a No-Regret Algorithm 
+authored by Arega Getaneh Abate, Dorsa Majdi, Jalal Kazempour, and Maryam Kamgarpour.
 
 ### Guide to the code
 
@@ -18,7 +18,7 @@ This README file is divided into the following sections:
 
 ### Important general comments
 
-The code begins by importing several Python libraries, including NumPy, cvxpy, scikit-learn (for Gaussian process regression), Matplotlib, tqdm (for progress bars), pickle (for data serialization), re (for regular expressions), gurobipy, linopy, and pyomo.environ (for the optimization or diagonalization method).
+The code begins by importing several Python libraries, including NumPy, cvxpy, Matplotlib, tqdm (for progress bars), pickle (for data serialization), re (for regular expressions), gurobipy, linopy, and pyomo.environ (for the optimization or diagonalization method).
 The code is divided into two main parts: the learning part and the diagonalization for the benchmark mode. The learning algorithm's code is split across three files: auc_function, Run_auction, and Plottings. On the other hand, the Diagonalization method is implemented within a single file, which includes the solution of the EPEC problem using the diagonalization algorithm and the market operator's computation considering trustful bids from each bidder.
 
 ### Auxillary functions
