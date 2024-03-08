@@ -206,7 +206,7 @@ def collect_payoff_1(file_names, social_welfare_value, social_welfare_value_1, b
 
     plt.xlabel('Time (rounds)')
     plt.xlim([0, T])
-    plt.ylim([0, 16000])
+    plt.ylim([0, 14000])
     plt.ylabel('Payoff [€]') 
     plt.tight_layout()
     plt.ticklabel_format(style = "sci", axis = "y", scilimits = (0,0))
@@ -215,8 +215,8 @@ def collect_payoff_1(file_names, social_welfare_value, social_welfare_value_1, b
 
 
 file_names = ['resHG', 'resHGBR', 'res']
-social_welfare_value = 2158.42  
-social_welfare_value_1 = 2055.66
+social_welfare_value = 709.91  
+social_welfare_value_1 = 323.21
 bidder_types = ['All HEDGE', 'HEDGE vs BR', 'Hedge']  
 
 
@@ -270,7 +270,7 @@ def collect_payoff_5(file_names, social_welfare_value, social_welfare_value_1, b
 
     plt.xlabel('Time (rounds)')
     plt.xlim([0, T])
-    plt.ylim([0, 16000])
+    plt.ylim([0, 14000])
     plt.ylabel('Payoff [€]')  # Changed label to 'Payoff'
     plt.tight_layout()
     plt.ticklabel_format(style = "sci", axis = "y", scilimits = (0,0))
@@ -279,8 +279,8 @@ def collect_payoff_5(file_names, social_welfare_value, social_welfare_value_1, b
 
 
 file_names = ['resHG', 'resHGBR', 'res']
-social_welfare_value = 12741.34  
-social_welfare_value_1 = 5755.82
+social_welfare_value = 3232.21  
+social_welfare_value_1 = 1118.64
 bidder_types = ['All HEDGE', 'HEDGE vs BR', 'Hedge']  
 
 
