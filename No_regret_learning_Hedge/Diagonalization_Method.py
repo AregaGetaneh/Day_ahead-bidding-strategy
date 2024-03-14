@@ -367,16 +367,4 @@ cap = [700.0, 700.0, 700.0, 700, 700]
 
 allocs, marginal_price, payments, objective_result = optimize_alloc(bids, Q, cap)
 
-print("Allocations:", allocs)
-print("Marginal Price:", marginal_price)
-print("Payments:", payments)
-print("Objective Function Result:", objective_result)
 
-for i in range(len(allocs)):
-    print(f"Allocations {i + 1} = {allocs[i]}")
-    true_costs = 0.5 * c_options[i][0] * allocs[i] ** 2 + d_options[i][0] * allocs[i]
-    print(f"True cost {i + 1} = {true_costs}")
-    Bidding_true_costs = 0.5 * c_options[i][0] * allocs[i] + d_options[i][0] 
-    print(f"Bidding with true cost {i + 1} = {Bidding_true_costs}")
-    Payments = allocs[i] * marginal_price - 0.5 * c_options[i][0] * allocs[i] ** 2 + d_options[i][0] * allocs[i]
-    print(f"Payments {i + 1}= {Payments}") 
