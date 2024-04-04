@@ -10,6 +10,8 @@ import re
 
 # function to normalize payoffs in [0,1]
 
+# function to normalize payoffs in [0,1]
+
 def normalize_util(payoffs, min_payoff, max_payoff):
     if min_payoff == max_payoff:
         return payoffs
@@ -23,6 +25,7 @@ def normalize_util(payoffs, min_payoff, max_payoff):
 normalize = np.vectorize(normalize_util)
 
 
+# parent class of bidders
 # parent class of bidders
 
 class Bidder:
@@ -73,8 +76,7 @@ class Bidder:
         else:
             choice = np.random.choice(len(self.action_set), p=mixed_strategies)
         return self.action_set[choice], choice
-    
-    
+
     # Player using Hedge algorithm (Freund and Schapire. 1997)
 
 class Hedge_bidder(Bidder):
@@ -97,3 +99,6 @@ class random_bidder(Bidder):
     def __init__(self, c_list, d_list, K, c_limit=None, d_limit=None, has_seed=False):
         super().__init__(c_list, d_list, K, c_limit=c_limit, d_limit=d_limit, has_seed=has_seed)
         self.type = 'random'
+        
+    def Update(self,payoffs):
+        self.weights = self.weights 
