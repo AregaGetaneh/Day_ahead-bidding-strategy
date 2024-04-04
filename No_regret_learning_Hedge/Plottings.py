@@ -79,11 +79,6 @@ plt.ticklabel_format(style="sci", axis="y", scilimits=(0,0))
 plt.savefig('regret_combined.pdf', bbox_inches="tight")
 plt.show()
 
-bidder_types = ['Trustful vs Hedge','Trustful vs Random','All Hedge','Hedge vs Random', 'Random vs Hedge', 'Random vs Random']
-bidder_colors = {'Trustful vs Hedge': 'green','Trustful vs Random': 'brown','All Hedge': 'blue', 'Hedge vs Random': 'gray', 'Random vs Hedge': 'red', 'Random vs Random': 'orange', }
-legend_labels = {'Trustful vs Hedge': 'Trustful vs Hedge','Trustful vs Random': 'Trustful vs Random',
-                 'All Hedge': 'Hedge vs Hedge', 'Hedge': 'Random vs Hedge', 'Random vs Random': 'Random vs Random'} 
-file_names = ['TrustfulHG', 'TrustfulRandom', 'allHG', 'Hedge_vs_Random', 'Random_Hedge', 'all_Random']
 
 markers = ['o', '*', 'x', '^', '4', '3', ">", '2', 'd']
 
@@ -123,9 +118,6 @@ def collect_payoff_5(file_names, Diag, Trustful, bidder_colors, bidder_types):
     plt.axhline(y = Diag, color='#069AF3', linestyle='--', label=f'Best Response')
     plt.axhline(y = Trustful, color='#F96306', linestyle='--', label=f'Trustful')
     
-
-
-
     plt.xlabel('Time (rounds)')
     plt.xlim([0, T])
     plt.ylim([0, 20000])
@@ -205,9 +197,7 @@ Trustful = 19418.91
 
 plot_combined_SW(file_names, Diag, Trustful, bidder_colors, bidder_types)
 
-
 def plot_combined_MCP(file_names, Diag, Trustful, bidder_colors, bidder_types):
-    
     bidder_types, bidder_colors, legend_labels, file_names = get_bidder_configuration()
     plt.rc("font", size = 17)
     plt.figure(figsize=(10, 4))
