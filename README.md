@@ -42,10 +42,10 @@ This file contains the code for the benchmark model. First, it defines the Mixed
 
 ### Plottings
 
-The 'Plotting' file contains several plotting functions. These functions are designed to plot regret (for Bidder 5), social cost, and market clearing prices (for the system), as well as bid prices and payoffs (for Bidders 1 and 5). All of these plotting functions take into account three learning cases: all bidders using the Degde, Bidder 5 usingthe Hedge while Bidders 1-4 use Random, and Bidder 5 using Hedge while Bidders 1-4 use their best responses from the diagonalization algorithm. Furthermore, the functions contain two optimization cases: diagonalization and trustful biddings.
-The code runs only for Bidder 1 for bid prices (c and d values) and payoff functions.  However, it is possible to plot for Bidder 5 by uncommenting the necessary lines in each function where there are comments indicating this.
+The 'Plotting' file contains four plotting functions. These functions are designed to plot the average regret (for Bidder 5) of six learning cases, average payoffs for Bidder 5 of eight cases, social cost, and market clearing prices (for the system in all the cases). All of these plotting functions take into account six learning cases: Trustful vs Hedge, Trustful vs Random, Hedge vs Hedge, Hedge vs Random, Random vs Hedge, and Random vs Random (x vs y, where x represents Bidders 1-4 or rival bidders and y represents Bidder 5). Furthermore, the functions contain two optimization cases: Best Response vs Best Response and Trustful bidding, which are results from the diagonalization algorithm and all bidding based on their true cost function.
+
 
 ### Summary
 
-All the necessary libraries should be installed and imported properly for the smooth running of the code. The simulation results should be stored properly; indeed, we also include them in this repository for convenience. Finally, uncommenting and commenting the necessary lines of code and data is crucial. 
+All the necessary libraries should be installed and imported properly for the smooth running of the code. The simulation results should be stored properly; indeed, we also include them in this repository for convenience. Finally, uncommenting and commenting on the necessary lines of code and data is crucial. 
 
